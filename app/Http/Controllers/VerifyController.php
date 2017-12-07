@@ -71,7 +71,7 @@ class VerifyController extends Controller
 
             }
 
-            session($request->session()->put($senderId, $conversation));
+            $request->session()->put($senderId, $conversation);
             //$conversation->processMessage($replyMessage);
 
             //$conversation->addMessage(new Message($message));
