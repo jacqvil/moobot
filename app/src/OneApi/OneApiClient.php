@@ -158,6 +158,7 @@ class OneApiClient implements OneApiClientInterface
         }
 
         try {
+            \Log::info('about to call OneApi');
             $response = $this->client->request($type, $this->config['ONEAPI_URL'] . $endpoint, $options);
 
             if ($response->getStatusCode() == self::HTTP_SUCCESS) {
@@ -165,11 +166,11 @@ class OneApiClient implements OneApiClientInterface
                 return $result;
             }
             else {
-                throw new BadResponseException('OneApi request failed with status code ' . $response->getStatusCode(), $request);
+                throw new BadResponseException('OneApi request failed with status code ' . $response->getStatusCode(), $response);
             }
 
         } catch (RequestException $e) {
-            var_dump($e->getMessage());die;
+            \Log::error($e->getMessage());
             throw $e;
         }
 
