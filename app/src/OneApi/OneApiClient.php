@@ -152,6 +152,10 @@ class OneApiClient implements OneApiClientInterface
         if ($this->token !== null) {
             $body['access_token'] = $this->token;
         }
+        else
+        {
+            throw new \Exception('You first need to authenticate with the api, dummy');
+        }
 
         if ($asJson) {
             //$options[$headers['content-type'] = 'application/json';
