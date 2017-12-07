@@ -36,6 +36,8 @@ class VerifyController extends Controller
         if ($senderId && $chatbotHelper->isMessage($input)) {
 
             \Log::info('Sender ID >>>>>>>>>>>>>> ' . $senderId);
+            \Log::info(' Session Value: ' . $request->session()->get($senderId));
+
             if ($request->session()->has($senderId)) {
                 \Log::info('We have session data');
             }
@@ -61,7 +63,6 @@ class VerifyController extends Controller
                     \Log::info('***** INTENT IS TO SEND *****');
                     $response = 'Hi, please provide us with your mobile number in the following format: 27823913445';
                     $request->session()->put($senderId, 'test');
-                    \Log::info(' Session Value: ' . $request->session()->get($senderId));
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
                 default:
