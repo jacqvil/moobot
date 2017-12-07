@@ -2,6 +2,7 @@
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Moo\MessengerManager\Message;
 
 class ChatbotHelper
 {
@@ -12,11 +13,13 @@ class ChatbotHelper
     protected $log;
     private $accessToken;
     public $config;
+    protected $session;
 
-    public function __construct(array $config)
+    public function __construct(array $config, $session)
     {
 
         $this->config = $config;
+        $this->session = $session;
         $this->accessToken = $config['access_token'];
         $this->chatbotAI = new ChatbotAI($this->config);
         $this->facebookSend = new FacebookSend();
@@ -60,20 +63,21 @@ class ChatbotHelper
      * Get the answer to a given user's message
      * @param null $api
      * @param string $message
-     * @return string
+     * @return Message $message;
      */
     public function getAnswer($message, $api = null)
     {
-        if ($api === 'apiai') {
-            return $this->chatbotAI->getApiAIAnswer($message);
-        } elseif ($api === self::WIT_AI) {
-            return $this->chatbotAI->getWitAIAnswer($message);
-        } elseif ($api === 'rates') {
-            return $this->chatbotAI->getForeignExchangeRateAnswer($message);
-        } else {
-            return $this->chatbotAI->getAnswer($message);
-        }
 
+            $response = $this->chatbotAI->getWitAIAnswer($message);
+            \Log::info('WIT response: ');
+            \Log::info($response);
+            $intent = $response['entities']['intent'][0]['value'] ?? 'no intent recognized';
+
+            $message = new Message();
+            $message->setIntent($intent);
+
+            return $message;
+           // $message->setIntent($intent);
     }
 
     /**
@@ -107,5 +111,19 @@ class ChatbotHelper
             echo $hubChallenge;
         }
 
+    }
+
+    /**
+     * @param $senderId
+     * @return boolean
+     */
+    public function isExistingConversation($senderId)
+    {
+            return $this->session->has($senderId);
+    }
+
+    public function createConversation($senderId)
+    {
+        $this->session->put($senderId, $senderId);
     }
 }

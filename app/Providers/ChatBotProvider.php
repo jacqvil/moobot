@@ -2,6 +2,7 @@
 
 namespace MooBot\Providers;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\ServiceProvider;
 use Moo\ChatBot\ChatbotHelper;
 
@@ -26,7 +27,7 @@ class ChatBotProvider extends ServiceProvider
     {
         $this->app->bind(ChatbotHelper::class, function ($app) {
             $config = config('chatbot');
-            return new ChatbotHelper($config);
+            return new ChatbotHelper($config, $app->session);
         });
     }
 }

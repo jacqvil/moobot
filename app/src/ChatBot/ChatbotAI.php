@@ -80,13 +80,12 @@ class ChatbotAI
 
             // Get the decoded body
             $response = json_decode((string)$response->getBody(), true);
-            $intent = $response['entities']['intent'][0]['value'] ?? 'no intent recognized';
+            return $response;
         } catch (\Exception $error) {
             \Log::error($error->getMessage());
             $this->log->warning($error->getMessage());
         }
 
-        return 'The intent of the message: ' . $intent;
     }
 
     /**

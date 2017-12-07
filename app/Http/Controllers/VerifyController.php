@@ -4,6 +4,9 @@ namespace MooBot\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Moo\ChatBot\ChatbotHelper;
+use Moo\MessengerManager\Conversation;
+use Moo\MessengerManager\Message;
+use Moo\MessengerManager\Sender;
 
 class VerifyController extends Controller
 {
@@ -31,13 +34,25 @@ class VerifyController extends Controller
 
         if ($senderId && $chatbotHelper->isMessage($input)) {
 
+            if (!$chatbotHelper->isExistingConversation($senderId)) {
+                $sender = new Sender($senderId);
+                $conversation = new Conversation($sender);
+            }
+            else {
+                $conversation = new Conversation();
+                $conversation->load($senderId);
+            }
+
             // Get the user's message
             $message = $chatbotHelper->getMessage($input);
 
-            // TODO Create conversation
-
             // Example 1: Get a static message back
             $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
+
+
+            $conversation->processMessage($replyMessage);
+
+            //$conversation->addMessage(new Message($message));
 
             // Example 2: Get foreign exchange rates
             // $replyMessage = $chatbotHelper->getAnswer($message, 'rates');
@@ -51,7 +66,7 @@ class VerifyController extends Controller
              //$replyMessage = $chatbotHelper->getAnswer($message, 'witai');
 
             // Send the answer back to the Facebook chat
-            $chatbotHelper->send($senderId, $replyMessage);
+            $chatbotHelper->send($senderId, $replyMessage->response());
 
         }
     }
