@@ -47,9 +47,6 @@ class OneApiClient implements OneApiClientInterface
         $this->config = $config;
     }
 
-    /**
-     * @return $this
-     */
     public function authenticate()
     {
         $result = $this->request(self::POST, 'token', [
@@ -61,8 +58,6 @@ class OneApiClient implements OneApiClientInterface
         ], TRUE);
 
         $this->token = $result->access_token;
-
-        return $this;
     }
 
     /**
