@@ -23,7 +23,7 @@ class Conversation
 
     protected $amount = 0;
 
-    protected $selectedRecipient;
+    protected $selectedRecipient = null;
 
     protected $repo;
     /**
@@ -147,6 +147,10 @@ class Conversation
 
         if ($message->contains('phone_number')) {
             return $this->fetchCustomer($message->getEntity('phone_number'));
+        }
+
+        if ($message->contains('amount_of_money')) {
+            $this->setAmount($message->getEntity('amount_of_money'));
         }
 
         return $response;
