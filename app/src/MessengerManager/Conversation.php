@@ -135,31 +135,50 @@ class Conversation
 
     public function helpImConfused(Message $message)
     {
-        $response = "I don't know what you need from me, do you want to send money?";
+        $response = "I don't know what you need from me, do you want to send money? If yes, please send me your mobile number.";
 
-        if ($message->contains('phone_number')) {
-            \Log::info('We have phone number');
-
-            $this->oneApiClient->authenticate();
-            $mobileNumber = $message->getEntity('phone_number');
-            $customers = $this->oneApiClient->customers($mobileNumber);
-
-            if (count($customers) == 0) {
-                $response = "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
-            }
-            else {
-                $this->sender->setCustomerData($customers[0]);
-                $response = 'Hi ' . $this->sender->getFullname() . ' who would you like to send money to?';
-            }
-
+        if (count($message->getEntities()) == 0) {
+            return $response;
         }
 
-        if ($message->contains('contact') && $this->sender->loaded()) {
+        if ($this->sender->hasCustomerData()) {
+            return $this->askNextQuestion();
+        }
 
+        if ($message->contains('phone_number')) {
+            return $this->fetchCustomer($message->getEntity('phone_number'));
         }
 
         return $response;
     }
+
+    public function fetchCustomer($mobileNumber)
+    {
+        $this->oneApiClient->authenticate();
+        $customers = $this->oneApiClient->customers($mobileNumber);
+
+        if (count($customers) == 0) {
+            return "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
+        }
+        else {
+            $this->sender->setCustomerData($customers[0]);
+            return $this->askNextQuestion();
+        }
+    }
+
+    public function askNextQuestion()
+    {
+        if ($this->getSelectedRecipient() === null) {
+            return 'Who do you want to send to?';
+        }
+
+        if ($this->getAmount() == 0) {
+            return 'How much do you want to send?';
+        }
+
+        return 'Do you want to send money? If yes, please send me your mobile number.';
+    }
+
 
     public function getSelectedRecipient()
     {

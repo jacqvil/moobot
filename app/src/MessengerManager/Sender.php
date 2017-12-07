@@ -13,6 +13,8 @@ class Sender
      */
     protected $customerData;
 
+    protected $recipients = [];
+
     /**
      * @return array
      */
@@ -29,10 +31,6 @@ class Sender
         $this->recipients = $recipients;
     }
 
-    /**
-     * @var array
-     */
-    protected $recipients;
     /**
      * Sender constructor.
      *
