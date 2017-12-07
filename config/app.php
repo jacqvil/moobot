@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        MooBot\Providers\AppServiceProvider::class,
+        MooBot\Providers\AuthServiceProvider::class,
+        // MooBot\Providers\BroadcastServiceProvider::class,
+        MooBot\Providers\EventServiceProvider::class,
+        MooBot\Providers\RouteServiceProvider::class,
 
     ],
 
