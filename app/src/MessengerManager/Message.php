@@ -122,7 +122,7 @@ class Message
 
     public function getEntity($key)
     {
-        return $entities[$key][0]['value'] ?? null;
+        return $this->entities[$key][0]['value'] ?? null;
     }
 
     public function contains($key)
