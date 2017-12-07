@@ -159,7 +159,6 @@ class OneApiClient implements OneApiClientInterface
 
         try {
             \Log::info('about to call OneApi');
-            \Log::info($body);
             $response = $this->client->request($type, $this->config['ONEAPI_URL'] . $endpoint, $options);
 
             if ($response->getStatusCode() == self::HTTP_SUCCESS) {
