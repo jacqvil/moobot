@@ -45,6 +45,11 @@ class Conversation
 
     }
 
+    public function processMessage(Message $message)
+    {
+
+    }
+
     /**
      * @return array
      */

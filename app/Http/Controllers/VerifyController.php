@@ -49,7 +49,6 @@ class VerifyController extends Controller
             // Example 1: Get a static message back
             $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
 
-
             $conversation->processMessage($replyMessage);
 
             //$conversation->addMessage(new Message($message));
