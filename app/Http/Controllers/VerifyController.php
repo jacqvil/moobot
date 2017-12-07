@@ -72,8 +72,9 @@ class VerifyController extends Controller
                 $message_to_reply = 'Huh! what do you mean?';
         }
 
+      // \Log::info('Showing user message: '. $input);
 
-        \Log::info('Showing user message: '. implode(',', $input));
+        \Log::info($input);
 
         $url = "https://graph.facebook.com/v2.6/me/messages?access_token=".$access_token;
         //Initiate cURL.
@@ -99,10 +100,10 @@ class VerifyController extends Controller
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content - Type: application / json'));
         //curl_setopt($ch, CURLOPT_HTTPHEADER, array(‘Content-Type: application/x-www-form-urlencoded’));
         //Execute the request
-        if (!empty($input['entry'][0]['messaging'][0]['message'])) {
+        if (!empty($input["entry"][0]["messaging"][0]["message"])) {
             $result = curl_exec($ch);
         }
-
+//	return implode(',',$request);
     }
 }
 
