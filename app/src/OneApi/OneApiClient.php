@@ -65,6 +65,7 @@ class OneApiClient implements OneApiClientInterface
      */
     public function customers($mobileNumber)
     {
+        \Log::info('calling customers for mobile: ' . $mobileNumber);
        $result  = $this->request(self::GET, 'customers', [
             'mobile_number'     => $mobileNumber,
             'payment_gateway'   => $this->config['ONEAPI_PAYMENT_GATEWAY']
