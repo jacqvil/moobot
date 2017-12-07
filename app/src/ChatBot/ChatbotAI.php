@@ -70,6 +70,8 @@ class ChatbotAI
      */
     public function getWitAIAnswer($message)
     {
+        \Log::info('Trying to get WIT answer...');
+
         try {
 
             $response = $this->witClient->get('/message', [
@@ -84,6 +86,7 @@ class ChatbotAI
             \Log::info('WIT Intent');
             \Log::info($intent);
         } catch (\Exception $error) {
+            \Log::error($error->getMessage());
             $this->log->warning($error->getMessage());
         }
 
