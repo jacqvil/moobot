@@ -71,6 +71,7 @@ class OneApiClient implements OneApiClientInterface
             'payment_gateway'   => $this->config['ONEAPI_PAYMENT_GATEWAY']
         ], false);
 
+       \Log::info('result status' . $result->status);
         if ($result->status == self::SUCCESS) {
             return $result->data->customers;
         }
