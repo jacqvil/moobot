@@ -61,17 +61,19 @@ class VerifyController extends Controller
                 case Message::INTENT_SEND :
                     \Log::info('***** INTENT IS TO SEND *****');
                     $response = 'Hi, please provide us with your mobile number in the following format: 27823913445';
+                    $request->session()->put($senderId, $conversation);
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
                 default:
                     \Log::info('***** We\'re confused *****');
                     $response = $conversation->helpImConfused($replyMessage);
+                    $request->session()->put($senderId, $conversation);
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
 
             }
 
-            $request->session()->put($senderId, $conversation);
+
             //$conversation->processMessage($replyMessage);
 
             //$conversation->addMessage(new Message($message));
