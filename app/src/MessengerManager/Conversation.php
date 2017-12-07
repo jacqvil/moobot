@@ -1,6 +1,7 @@
 <?php namespace Moo\MessengerManager;
 
 use Moo\OneApi\OneApiClient;
+use Moo\OneApi\OneApiClientInterface;
 
 class Conversation
 {
@@ -96,6 +97,16 @@ class Conversation
         }
 
         return $response;
+    }
+
+    public function __sleep()
+    {
+        $this->oneApiClient = null;
+    }
+
+    public function __wakeup()
+    {
+        $this->oneApiClient = \App::make(OneApiClientInterface::class);
     }
 
 }
