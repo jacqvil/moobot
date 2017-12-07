@@ -4,9 +4,25 @@ namespace MooBot\Http\Controllers;
 
 use Illuminate\Http\Request;
 use OneApi\OneApiClient;
+use OneApi\OneApiClientInterface;
 
 class MessengerController extends Controller
 {
+    /**
+     * @var OneApiClientInterface
+     */
+    protected $oneApiClient;
+
+    /**
+     * MessengerController constructor.
+     *
+     * @param OneApiClientInterface $oneApiClient
+     */
+    public function __construct(OneApiClientInterface $oneApiClient)
+    {
+        $this->oneApiClient = $oneApiClient;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +30,9 @@ class MessengerController extends Controller
      */
     public function index()
     {
-        $client = new OneApiClient();
+        $this->oneApiClient->authenticate();
+        $customers = $this->oneApiClient->customers('27833884078');
+        $this->oneApiClient->recipients($customers[0]->id);
     }
 
     /**

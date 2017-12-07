@@ -1,17 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jacquesviljoen
- * Date: 2017/12/07
- * Time: 1:50 PM
- */
-
-namespace OneApi;
-
+<?php namespace OneApi;
 
 interface OneApiClientInterface
 {
-    public function authenticate($mobileNumber);
+    public function authenticate();
     public function customers($mobileNumber);
     public function recipients($customerId);
     public function corridors($customerId);

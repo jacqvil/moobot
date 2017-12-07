@@ -27,7 +27,7 @@
         ],
         "psr-4": {
             "MooBot\\": "app/",
-            "OneApi\\": "app/src"
+            "OneApi\\": "app/src/"
         }
     },
     "autoload-dev": {
