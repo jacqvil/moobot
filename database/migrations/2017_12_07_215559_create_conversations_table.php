@@ -16,7 +16,7 @@ class CreateConversationsTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->increments('id');
             $table->string("sender_id");
-            $table->string("customer_data")->nullable();
+            $table->longText("customer_data")->nullable();
             $table->string("recipients")->nullable();
             $table->string("recipient_id")->nullable();
             $table->decimal("amount", 20, 4)->nullable();
