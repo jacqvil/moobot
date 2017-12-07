@@ -55,7 +55,7 @@ class Message
      */
     public function getIntent()
     {
-        return $this->intent;
+        return $this->getEntity('intent');
     }
 
     /**
