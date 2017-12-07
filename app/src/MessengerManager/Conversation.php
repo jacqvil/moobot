@@ -102,6 +102,7 @@ class Conversation
     public function __sleep()
     {
         $this->oneApiClient = null;
+        return ['sender', 'messages'];
     }
 
     public function __wakeup()
