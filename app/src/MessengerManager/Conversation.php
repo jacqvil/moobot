@@ -72,7 +72,7 @@ class Conversation
 
     public function helpImConfused(Message $message)
     {
-        $message = "I don't know what you need from me, do you want to send money?";
+        $response = "I don't know what you need from me, do you want to send money?";
 
         if ($message->contains('phone_number')) {
             \Log::info('We have phone number');
@@ -82,11 +82,11 @@ class Conversation
             $customers = $this->oneApiClient->customers($mobileNumber);
 
             if (count($customers) == 0) {
-                $message = "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
+                $response = "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
             }
             else {
                 $this->sender->setCustomerData($customers[0]);
-                $message = 'Hi ' . $this->sender->getFullname() . ' who would you like to send money to?';
+                $response = 'Hi ' . $this->sender->getFullname() . ' who would you like to send money to?';
             }
 
         }
@@ -95,7 +95,7 @@ class Conversation
 
         }
 
-        return $message;
+        return $response;
     }
 
 }
