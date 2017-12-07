@@ -69,6 +69,8 @@ class ChatbotHelper
     {
 
             $response = $this->chatbotAI->getWitAIAnswer($message);
+            \Log::info('Wit response');
+            \Log::info($response);
 
             $intent = $response['entities']['intent'][0]['value'] ?? null;
             $contact = $response['entities']['contact'][0]['value'] ?? null;

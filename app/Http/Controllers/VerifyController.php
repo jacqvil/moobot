@@ -71,7 +71,7 @@ class VerifyController extends Controller
              //$replyMessage = $chatbotHelper->getAnswer($message, 'witai');
 
             // Send the answer back to the Facebook chat
-            $chatbotHelper->send($senderId, $replyMessage->response());
+           // $chatbotHelper->send($senderId, $replyMessage->response());
 
         }
     }
