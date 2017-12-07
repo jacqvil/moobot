@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a13a37d27782f128171c7a186a28f6d1",
+    "content-hash": "d54c0b94f523129467f2b6cb1b89bc23",
     "packages": [
         {
             "name": "casperlaitw/laravel-fb-messenger",
@@ -628,6 +628,50 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "iboldurev/dialogflow",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iboldurev/dialogflow.git",
+                "reference": "b0aef50e1ccacbe86ca8ff173b5ef9f229d296c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iboldurev/dialogflow/zipball/b0aef50e1ccacbe86ca8ff173b5ef9f229d296c8",
+                "reference": "b0aef50e1ccacbe86ca8ff173b5ef9f229d296c8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DialogFlow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Boldyrev",
+                    "email": "iboldurev@gmail.com",
+                    "homepage": "https://github.com/iboldurev"
+                }
+            ],
+            "description": "Dialogflow php sdk",
+            "keywords": [
+                "Dialogflow",
+                "Dialogflow sdk",
+                "api.ai",
+                "bot"
+            ],
+            "time": "2017-10-27T19:44:35+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

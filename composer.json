@@ -9,6 +9,7 @@
         "casperlaitw/laravel-fb-messenger": "^1.5",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
+        "iboldurev/dialogflow": "^0.3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "~3.0",

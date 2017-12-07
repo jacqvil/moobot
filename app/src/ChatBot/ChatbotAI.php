@@ -1,6 +1,6 @@
 <?php namespace Moo\ChatBot;
 
-use ApiAi\Client;
+use DialogFlow\Client;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
