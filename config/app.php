@@ -163,7 +163,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -176,7 +175,7 @@ return [
         // MooBot\Providers\BroadcastServiceProvider::class,
         MooBot\Providers\EventServiceProvider::class,
         MooBot\Providers\RouteServiceProvider::class,
-
+        MooBot\Providers\OneApiClientProvider::class,
     ],
 
     /*
