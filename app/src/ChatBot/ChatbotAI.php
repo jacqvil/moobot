@@ -20,7 +20,7 @@ class ChatbotAI
         $this->config = $config;
         $this->log = new Logger('general');
         $this->log->pushHandler(new StreamHandler('debug.log'));
-        $this->apiClient = new Client($this->config['apiai_token']);
+     //   $this->apiClient = new Client($this->config['apiai_token']);
         $this->witClient = new \Tgallice\Wit\Client($this->config['witai_token']);
         $this->foreignExchangerate = new ForeignExchangeRate();
     }
@@ -47,7 +47,7 @@ class ChatbotAI
      * @param string message
      * @return string
      */
-    public function getApiAIAnswer($message)
+  /*  public function getApiAIAnswer($message)
     {
         try {
 
@@ -61,7 +61,7 @@ class ChatbotAI
         } catch (\Exception $error) {
             $this->log->warning($error->getMessage());
         }
-    }
+    }*/å
 
     /**
      * Get the answer to the user's message with help from wit.ai
