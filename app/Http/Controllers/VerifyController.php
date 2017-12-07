@@ -21,8 +21,6 @@ class VerifyController extends Controller
     public function makeItWork(Request $request, ChatbotHelper $chatbotHelper)
     {
         // Facebook webhook verification
-        \Log::info($_REQUEST);
-        \Log::info($request->toArray());
         $chatbotHelper->verifyWebhook($request->toArray());
 
         // Get the fb users data
