@@ -12,6 +12,27 @@ class Sender
      * @var array
      */
     protected $customerData;
+
+    /**
+     * @return array
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
+    }
+
+    /**
+     * @param array $recipients
+     */
+    public function setRecipients($recipients)
+    {
+        $this->recipients = $recipients;
+    }
+
+    /**
+     * @var array
+     */
+    protected $recipients;
     /**
      * Sender constructor.
      *
@@ -46,8 +67,13 @@ class Sender
         $this->customerData = $customerData;
     }
 
-    public function getCustomerData($key)
+    public function getCustomerData($key = null)
     {
+        // return all data
+        if ($key === null) {
+            return $this->customerData;
+        }
+
         return $this->customerData->{$key} ?? '';
     }
 

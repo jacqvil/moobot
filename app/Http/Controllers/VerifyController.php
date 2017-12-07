@@ -42,39 +42,44 @@ class VerifyController extends Controller
                 \Log::info('We have session data');
             }
 
-            if (!$chatbotHelper->isExistingConversation($senderId)) {
+            $conversation = new Conversation(\App::make(OneApiClientInterface::class));
+            $conversation->save();
+
+            if (! $conversation->load($senderId)) {
                 \Log::info('=========== Starting new conversation =================');
                 $sender = new Sender($senderId);
                 $conversation = new Conversation(\App::make(OneApiClientInterface::class), $sender);
+
             }
             else {
                 \Log::info('=========== Continuing conversation =================');
-                $conversation = new Conversation(\App::make(OneApiClientInterface::class));
-                $conversation->load($senderId);
             }
 
             // Get the user's message
             $message = $chatbotHelper->getMessage($input);
 
             $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
+            $replyMessage->setConversationId($conversation->getId());
 
             switch ($replyMessage->getIntent()) {
                 case Message::INTENT_SEND :
                     \Log::info('***** INTENT IS TO SEND *****');
                     $response = 'Hi, please provide us with your mobile number in the following format: 27823913445';
-                    $request->session()->put($senderId, 'test');
+                    $replyMessage->save($message, $response);
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
                 default:
                     \Log::info('***** We\'re confused *****');
                     $response = $conversation->helpImConfused($replyMessage);
+                    $replyMessage->save($message, $response);
                     $request->session()->put($senderId, 'test');
-                    \Log::info(' Session Value: ' . $request->session()->get($senderId));
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
 
             }
 
+            \Log::info('saving conversation');
+            $conversation->save();
 
             //$conversation->processMessage($replyMessage);
 

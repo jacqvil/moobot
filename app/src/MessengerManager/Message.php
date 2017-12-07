@@ -8,6 +8,9 @@
 
 namespace Moo\MessengerManager;
 
+use Moo\Repositories\MessageRepository;
+use MooBot\Message as MessageModel;
+
 class Message
 {
     CONST INTENT_SEND = 'send';
@@ -18,6 +21,8 @@ class Message
     protected $amount;
     protected $mobileNumber;
     protected $entities;
+    protected $repo;
+    protected $conversationId;
 
     /**
      * @return mixed
@@ -45,10 +50,10 @@ class Message
     /**
      * Message constructor.
      *
-     * @param array $data;
      */
     public function __construct()
     {
+        $this->repo = new MessageRepository(new MessageModel);
     }
 
     /**
@@ -129,4 +134,30 @@ class Message
     {
         return (isset($this->entities[$key]));
     }
+
+    public function save($in, $out)
+    {
+        $message = new MessageModel();
+        $message->in = $in;
+        $message->out = $out;
+        $message->conversation_id = $this->getConversationId();
+        $message->save();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConversationId()
+    {
+        return $this->conversationId;
+    }
+
+    /**
+     * @param mixed $conversationId
+     */
+    public function setConversationId($conversationId)
+    {
+        $this->conversationId = $conversationId;
+    }
+
 }

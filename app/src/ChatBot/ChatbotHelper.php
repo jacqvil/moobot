@@ -3,6 +3,8 @@
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Moo\MessengerManager\Message;
+use Moo\Repositories\ConversationRepository;
+use MooBot\Conversation;
 
 class ChatbotHelper
 {
@@ -121,7 +123,10 @@ class ChatbotHelper
      */
     public function isExistingConversation($senderId)
     {
-            return $this->session->has($senderId);
+            $repo = new ConversationRepository(new Conversation);
+            $conversation = $repo->findBySenderId($senderId);
+
+            return $conversation !== null;
     }
 
     public function createConversation($senderId)
