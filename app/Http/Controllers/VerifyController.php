@@ -20,15 +20,12 @@ class VerifyController extends Controller
 
     public function makeItWork(Request $request, ChatbotHelper $chatbotHelper)
     {
-        // Facebook webhook verification
-        $chatbotHelper->verifyWebhook($request->toArray());
-
-        \Log::info('Facebook Request');
-        \Log::info($request->toArray());
         // Get the fb users data
-        $input = json_decode(file_get_contents('php://input'), true);
-        \Log::info('Facebook user data');
-        \Log::info($input);
+        $input = $request->toArray();
+
+        // Facebook webhook verification
+        $chatbotHelper->verifyWebhook($input);
+
         $senderId = $chatbotHelper->getSenderId($input);
 
         if ($senderId && $chatbotHelper->isMessage($input)) {
@@ -37,7 +34,7 @@ class VerifyController extends Controller
             $message = $chatbotHelper->getMessage($input);
 
             // Example 1: Get a static message back
-            $ChatBotResponse = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
+            $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
 
             // Example 2: Get foreign exchange rates
             // $replyMessage = $chatbotHelper->getAnswer($message, 'rates');
