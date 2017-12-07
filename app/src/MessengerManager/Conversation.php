@@ -74,6 +74,7 @@ class Conversation
     {
         if ($message->contains('phone_number')) {
             \Log::info('We have phone number');
+            \Log::info($this->oneApiClient);
             $response = $this->oneApiClient->customers($message->getEntity('phone_number'));
             \Log::info('Customer lookup response:');
             \Log::info($response);
