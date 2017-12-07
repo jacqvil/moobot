@@ -5,6 +5,8 @@ use Monolog\Logger;
 
 class ChatbotHelper
 {
+    const WIT_AI = 'witai';
+
     protected $chatbotAI;
     protected $facebookSend;
     protected $log;
@@ -66,7 +68,7 @@ class ChatbotHelper
 
         if ($api === 'apiai') {
             return $this->chatbotAI->getApiAIAnswer($message);
-        } elseif ($api === 'witai') {
+        } elseif ($api === self::WIT_AI) {
             return $this->chatbotAI->getWitAIAnswer($message);
         } elseif ($api === 'rates') {
             return $this->chatbotAI->getForeignExchangeRateAnswer($message);
