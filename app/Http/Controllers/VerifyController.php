@@ -23,6 +23,7 @@ class VerifyController extends Controller
         // Get the fb users data
         $input = $request->toArray();
 
+        \Log::info('User Input', $input);
         // Facebook webhook verification
         $chatbotHelper->verifyWebhook($input);
 
@@ -32,6 +33,8 @@ class VerifyController extends Controller
 
             // Get the user's message
             $message = $chatbotHelper->getMessage($input);
+
+            // TODO Create conversation
 
             // Example 1: Get a static message back
             $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
