@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class VerifyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return env('MESSENGER_VERIFICATION_CODE');
+        if ($request->has('hub_verify_token')) {
+            return $request->get('hub_challenge');
+        } else {
+            return 'Invalid Verify Token';
+        }
+
     }
 }
