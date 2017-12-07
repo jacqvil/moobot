@@ -1,6 +1,4 @@
-<?php
-
-namespace App;
+<?php namespace MooBot\Contracts;
 
 use Casperlaitw\LaravelFbMessenger\Contracts\PostbackHandler;
 use Casperlaitw\LaravelFbMessenger\Messages\ReceiveMessage;

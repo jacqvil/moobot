@@ -6,8 +6,10 @@ return [
     'app_secret' => env('MESSENGER_APP_SECRET', null),
     'auto_typing' => true,
     'handlers' => [
-        Casperlaitw\LaravelFbMessenger\Contracts\DefaultHandler::class
+        \MooBot\Contracts\DefaultHandler::class
     ],
     'custom_url' => '/webhook',
-    'postbacks' => [],
+    'postbacks' => [
+        \MooBot\Contracts\StartupPostback::class
+    ],
 ];
