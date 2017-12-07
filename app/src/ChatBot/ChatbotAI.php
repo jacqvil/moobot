@@ -61,7 +61,7 @@ class ChatbotAI
         } catch (\Exception $error) {
             $this->log->warning($error->getMessage());
         }
-    }*/å
+    }*/
 
     /**
      * Get the answer to the user's message with help from wit.ai
