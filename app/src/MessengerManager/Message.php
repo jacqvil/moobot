@@ -10,7 +10,7 @@ namespace Moo\MessengerManager;
 
 class Message
 {
-    protected $data;
+    CONST INTENT_SEND = 'send';
 
     protected $intent;
     protected $contact;
@@ -22,9 +22,8 @@ class Message
      *
      * @param array $data;
      */
-    public function __construct(array $data)
+    public function __construct()
     {
-        $this->data = $data;
     }
 
     /**

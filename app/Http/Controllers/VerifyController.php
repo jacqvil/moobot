@@ -46,10 +46,16 @@ class VerifyController extends Controller
             // Get the user's message
             $message = $chatbotHelper->getMessage($input);
 
-            // Example 1: Get a static message back
             $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
 
-            $conversation->processMessage($replyMessage);
+            switch ($replyMessage->getIntent()) {
+                case Message::INTENT_SEND :
+                    $response = 'Hi, please provide us with your mobile number in the following format: 0027823913445';
+                    $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
+                    break;
+            }
+
+            //$conversation->processMessage($replyMessage);
 
             //$conversation->addMessage(new Message($message));
 

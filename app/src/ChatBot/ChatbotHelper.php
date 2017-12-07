@@ -69,15 +69,17 @@ class ChatbotHelper
     {
 
             $response = $this->chatbotAI->getWitAIAnswer($message);
-            \Log::info('WIT response: ');
-            \Log::info($response);
-            $intent = $response['entities']['intent'][0]['value'] ?? 'no intent recognized';
+
+            $intent = $response['entities']['intent'][0]['value'] ?? null;
+            $contact = $response['entities']['contact'][0]['value'] ?? null;
+            $amountOfMoney = $response['entities']['amount_of_money'][0]['value'] ?? null;
 
             $message = new Message();
             $message->setIntent($intent);
+            $message->setContact($contact);
+            $message->setAmount($amountOfMoney);
 
             return $message;
-           // $message->setIntent($intent);
     }
 
     /**
