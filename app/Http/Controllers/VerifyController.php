@@ -43,7 +43,6 @@ class VerifyController extends Controller
             }
 
             $conversation = new Conversation(\App::make(OneApiClientInterface::class));
-            $conversation->save();
 
             if (! $conversation->load($senderId)) {
                 \Log::info('=========== Starting new conversation =================');
@@ -54,6 +53,8 @@ class VerifyController extends Controller
             else {
                 \Log::info('=========== Continuing conversation =================');
             }
+
+            $conversation->save();
 
             // Get the user's message
             $message = $chatbotHelper->getMessage($input);
