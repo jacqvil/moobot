@@ -1,5 +1,7 @@
 <?php namespace Moo\MessengerManager;
 
+use Moo\OneApi\OneApiClient;
+
 class Conversation
 {
     /**
@@ -12,13 +14,18 @@ class Conversation
      */
     protected $messages;
 
+    protected $oneApiClient;
+
     /**
      * Conversation constructor.
      *
+     * @param OneApiClient $client
      * @param Sender|null $sender
      */
-    public function __construct(Sender $sender = null)
+    public function __construct(OneApiClient $client, Sender $sender = null)
     {
+        $this->oneApiClient = $client;
+
         if ($sender instanceof Sender) {
             $this->sender = $sender;
         }
@@ -61,5 +68,15 @@ class Conversation
     public function addMessage(Message $message)
     {
         array_push($this->messages, $message);
+    }
+
+    public function helpImConfused(Message $message)
+    {
+        if ($message->contains('phone_number')) {
+            $response = $this->oneApiClient->customers($message->getEntity('phone_number'));
+            \Log::info('Customer lookup response:');
+            \Log::info($response);
+
+        }
     }
 }

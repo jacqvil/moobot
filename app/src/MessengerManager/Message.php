@@ -16,6 +16,30 @@ class Message
     protected $contact;
     protected $location;
     protected $amount;
+    protected $mobileNumber;
+    protected $entities;
+
+    /**
+     * @return mixed
+     */
+    public function getEntities()
+    {
+        return $this->entities;
+    }
+
+    /**
+     * @param mixed $entities
+     */
+    public function setEntities($entities)
+    {
+        $this->entities = $entities;
+
+       /* $this->intent = $entities['intent'][0]['value'] ?? null;
+        $this->contact = $entities['contact'][0]['value'] ?? null;
+        $this->amount = $entities['amount_of_money'][0]['value'] ?? null;
+        $this->mobileNumber = $entities['amount_of_money'][0]['value'] ?? null;*/
+
+    }
 
     /**
      * Message constructor.
@@ -95,4 +119,13 @@ class Message
         return 'The intent is: ' . $this->intent;
     }
 
+    public function getEntity($key)
+    {
+        return $entities[$key][0]['value'] ?? null;
+    }
+
+    public function contains($key)
+    {
+        return (isset($this->entities[$key]));
+    }
 }

@@ -72,14 +72,12 @@ class ChatbotHelper
             \Log::info('Wit response');
             \Log::info($response);
 
-            $intent = $response['entities']['intent'][0]['value'] ?? null;
-            $contact = $response['entities']['contact'][0]['value'] ?? null;
-            $amountOfMoney = $response['entities']['amount_of_money'][0]['value'] ?? null;
 
             $message = new Message();
-            $message->setIntent($intent);
-            $message->setContact($contact);
-            $message->setAmount($amountOfMoney);
+            $message->setEntities($response['entities']);
+            //$message->setIntent($intent);
+            //$message->setContact($contact);
+            //$message->setAmount($amountOfMoney);
 
             return $message;
     }

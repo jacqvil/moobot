@@ -7,6 +7,7 @@ use Moo\ChatBot\ChatbotHelper;
 use Moo\MessengerManager\Conversation;
 use Moo\MessengerManager\Message;
 use Moo\MessengerManager\Sender;
+use Moo\OneApi\OneApiClientInterface;
 
 class VerifyController extends Controller
 {
@@ -36,10 +37,10 @@ class VerifyController extends Controller
 
             if (!$chatbotHelper->isExistingConversation($senderId)) {
                 $sender = new Sender($senderId);
-                $conversation = new Conversation($sender);
+                $conversation = new Conversation(\App::make(OneApiClientInterface::class), $sender);
             }
             else {
-                $conversation = new Conversation();
+                $conversation = new Conversation(\App::make(OneApiClientInterface::class));
                 $conversation->load($senderId);
             }
 
@@ -53,6 +54,8 @@ class VerifyController extends Controller
                     $response = 'Hi, please provide us with your mobile number in the following format: 0027823913445';
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
+                default: $conversation->helpImConfused($replyMessage);  break;
+
             }
 
             //$conversation->processMessage($replyMessage);
