@@ -1,4 +1,4 @@
-<?php namespace OneApi;
+<?php namespace Moo\OneApi;
 
 class Customer
 {

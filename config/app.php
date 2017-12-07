@@ -176,6 +176,7 @@ return [
         MooBot\Providers\EventServiceProvider::class,
         MooBot\Providers\RouteServiceProvider::class,
         MooBot\Providers\OneApiClientProvider::class,
+        MooBot\Providers\ChatBotProvider::class
     ],
 
     /*

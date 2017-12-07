@@ -4,8 +4,8 @@ namespace MooBot\Providers;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
-use OneApi\OneApiClient;
-use OneApi\OneApiClientInterface;
+use Moo\OneApi\OneApiClient;
+use Moo\OneApi\OneApiClientInterface;
 
 class OneApiClientProvider extends ServiceProvider
 {

@@ -3,8 +3,8 @@
 namespace MooBot\Http\Controllers;
 
 use Illuminate\Http\Request;
-use OneApi\OneApiClient;
-use OneApi\OneApiClientInterface;
+use Moo\OneApi\OneApiClient;
+use Moo\OneApi\OneApiClientInterface;
 
 class MessengerController extends Controller
 {
@@ -32,6 +32,7 @@ class MessengerController extends Controller
     {
         $this->oneApiClient->authenticate();
         $customers = $this->oneApiClient->customers('27833884078');
+
         $this->oneApiClient->recipients($customers[0]->id);
     }
 

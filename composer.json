@@ -12,7 +12,8 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "pusher/pusher-php-server": "~3.0",
-        "sammyk/laravel-facebook-sdk": "^3.5"
+        "sammyk/laravel-facebook-sdk": "^3.5",
+        "tgallice/wit-php": "^0.3.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -27,7 +28,7 @@
         ],
         "psr-4": {
             "MooBot\\": "app/",
-            "OneApi\\": "app/src/"
+            "Moo\\": "app/src/"
         }
     },
     "autoload-dev": {

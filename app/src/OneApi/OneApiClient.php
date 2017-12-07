@@ -1,11 +1,11 @@
-<?php namespace OneApi;
+<?php namespace Moo\OneApi;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use OneApi\OneApiClientInterface;
+use Moo\OneApi\OneApiClientInterface;
 
 /**
  * Class OneApiClient

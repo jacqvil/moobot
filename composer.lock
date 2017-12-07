@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2d0e582173d8b31d70c92406f5bb1e5",
+    "content-hash": "a13a37d27782f128171c7a186a28f6d1",
     "packages": [
         {
             "name": "casperlaitw/laravel-fb-messenger",
@@ -2607,6 +2607,59 @@
                 "dump"
             ],
             "time": "2017-11-30T14:59:23+00:00"
+        },
+        {
+            "name": "tgallice/wit-php",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tgallice/wit-php.git",
+                "reference": "63d99972f2cc29242a5d8d238e00fcc10b1a65d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tgallice/wit-php/zipball/63d99972f2cc29242a5d8d238e00fcc10b1a65d3",
+                "reference": "63d99972f2cc29242a5d8d238e00fcc10b1a65d3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tgallice\\Wit\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Gallice",
+                    "email": "tm.gallice@gmail.com",
+                    "homepage": "https://github.com/tgallice"
+                }
+            ],
+            "description": "Wit.ai php sdk",
+            "keywords": [
+                "bot",
+                "chat bot",
+                "chatbot",
+                "wit.ai",
+                "wit.ai sdk"
+            ],
+            "time": "2016-08-10T14:37:49+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
