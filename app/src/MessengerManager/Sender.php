@@ -39,19 +39,21 @@ class Sender
     }
 
     /**
-     * @return array
-     */
-    public function getCustomerData()
-    {
-        return $this->customerData;
-    }
-
-    /**
      * @param array $customerData
      */
     public function setCustomerData($customerData)
     {
         $this->customerData = $customerData;
+    }
+
+    public function getCustomerData($key)
+    {
+        return $this->customerData->{$key} ?? '';
+    }
+
+    public function getFullname()
+    {
+        return $this->getCustomerData('first_name') . ' ' . $this->getCustomerData('surname');
     }
 
 }

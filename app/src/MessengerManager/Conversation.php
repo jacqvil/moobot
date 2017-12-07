@@ -76,11 +76,19 @@ class Conversation
             \Log::info('We have phone number');
 
             $this->oneApiClient->authenticate();
-            $response = $this->oneApiClient->customers($message->getEntity('phone_number'));
+            $mobileNumber = $message->getEntity('phone_number');
+            $customers = $this->oneApiClient->customers($mobileNumber);
 
-            \Log::info('Customer lookup response:');
-            \Log::info($response);
+            if (count($customers) == 0) {
+                $message = "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
+            }
+            else {
+                $this->sender->setCustomerData($customers[0]);
+                $message = 'Hi ' . $this->sender->getFullname() . ' who would you like to send money to?';
+            }
 
+            return $message;
         }
     }
+
 }
