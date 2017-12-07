@@ -21,7 +21,7 @@ class Conversation
 
     protected $oneApiClient;
 
-    protected $amount;
+    protected $amount = 0;
 
     protected $selectedRecipient;
 
@@ -175,14 +175,14 @@ class Conversation
             $conversation->sender_id = $this->sender->getSenderId();
             $conversation->customer_data = json_encode($this->sender->getCustomerData()) ?? null;
             $conversation->recipients = json_encode($this->sender->getRecipients()) ?? null;
-            $conversation->amount = json_encode($this->getAmount()) ?? 0;
+            $conversation->amount = $this->getAmount() ?? 0;
             $conversation->recipient_id = json_encode($this->getSelectedrecipient()) ?? null;
             $conversation->save();
         }
         else {
             $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): null;
             $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
-            $conversation->amount = $conversation->amount === 0 ? json_encode($this->amount()): 0;
+            $conversation->amount = $conversation->amount === 0 ? $this->amount(): 0;
             $conversation->recipient_id = $conversation->recipient_id === null ? json_encode($this->getSelectedRecipient()): null;
             $conversation->save();
         }
