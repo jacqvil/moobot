@@ -4,8 +4,79 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb13913620747be7eeba1a0b0dd0e4ff",
+    "content-hash": "a2d0e582173d8b31d70c92406f5bb1e5",
     "packages": [
+        {
+            "name": "casperlaitw/laravel-fb-messenger",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CasperLaiTW/laravel-fb-messenger.git",
+                "reference": "3cfb90bed634f7f7af5ca69f23ae50bd44086ea5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CasperLaiTW/laravel-fb-messenger/zipball/3cfb90bed634f7f7af5ca69f23ae50bd44086ea5",
+                "reference": "3cfb90bed634f7f7af5ca69f23ae50bd44086ea5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "illuminate/broadcasting": "~5.1",
+                "illuminate/console": "~5.1",
+                "illuminate/queue": "~5.1",
+                "illuminate/routing": "~5.1",
+                "illuminate/support": "~5.1",
+                "illuminate/view": "~5.1",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.6",
+                "mockery/mockery": "^0.9.5",
+                "nesbot/carbon": "^1.21",
+                "phpunit/phpunit": "~5.0",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Casperlaitw\\LaravelFbMessenger\\LaravelFbMessengerServiceProvider"
+                    ],
+                    "aliases": {
+                        "Menu": "Casperlaitw\\LaravelFbMessenger\\Facades\\MessengerMenu"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Casperlaitw\\LaravelFbMessenger\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Casper Lai",
+                    "email": "casper.lai@sleepingdesign.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Package to Integrate Facebook Messenger API",
+            "homepage": "https://github.com/casperlaitw/laravel-fb-messenger",
+            "keywords": [
+                "Messenger",
+                "chatbot",
+                "facebook",
+                "laravel"
+            ],
+            "time": "2017-11-20T15:10:59+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -261,6 +332,64 @@
                 "parser"
             ],
             "time": "2017-11-14T20:44:03+00:00"
+        },
+        {
+            "name": "facebook/graph-sdk",
+            "version": "5.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "2f9639c15ae043911f40ffe44080b32bac2c5280"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2f9639c15ae043911f40ffe44080b32bac2c5280",
+                "reference": "2f9639c15ae043911f40ffe44080b32bac2c5280",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2017-08-16T17:28:07+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1408,6 +1537,58 @@
             "time": "2017-11-16T14:29:51+00:00"
         },
         {
+            "name": "pusher/pusher-php-server",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/pusher-http-php.git",
+                "reference": "03d3417748fc70a889c97271e25e282ff1ff0ae3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/03d3417748fc70a889c97271e25e282ff1ff0ae3",
+                "reference": "03d3417748fc70a889c97271e25e282ff1ff0ae3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": "^5.4 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pusher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for interacting with the Pusher REST API",
+            "keywords": [
+                "events",
+                "messaging",
+                "php-pusher-server",
+                "publish",
+                "push",
+                "pusher",
+                "real time",
+                "real-time",
+                "realtime",
+                "rest",
+                "trigger"
+            ],
+            "time": "2017-10-20T11:18:01+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.7.1",
             "source": {
@@ -1488,6 +1669,75 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "sammyk/laravel-facebook-sdk",
+            "version": "3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SammyK/LaravelFacebookSdk.git",
+                "reference": "2213691019e87e589f2fcc4d0a494deade63973f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SammyK/LaravelFacebookSdk/zipball/2213691019e87e589f2fcc4d0a494deade63973f",
+                "reference": "2213691019e87e589f2fcc4d0a494deade63973f",
+                "shasum": ""
+            },
+            "require": {
+                "facebook/graph-sdk": "^5.0",
+                "illuminate/auth": "~5.0|~5.1|~5.2|~5.3",
+                "illuminate/config": "~5.0|~5.1|~5.2|~5.3",
+                "illuminate/database": "~5.0|~5.1|~5.2|~5.3",
+                "illuminate/routing": "~5.0|~5.1|~5.2|~5.3",
+                "illuminate/session": "~5.0|~5.1|~5.2|~5.3",
+                "illuminate/support": "~5.0|~5.1|~5.2|~5.3",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0|~5.0|~6.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SammyK\\LaravelFacebookSdk\\LaravelFacebookSdkServiceProvider"
+                    ],
+                    "aliases": {
+                        "Facebook": "SammyK\\LaravelFacebookSdk\\FacebookFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SammyK\\LaravelFacebookSdk\\": "src/LaravelFacebookSdk"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sammy Kaye Powers",
+                    "email": "me@sammyk.me",
+                    "homepage": "http://sammyk.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Fully unit tested Facebook SDK v5 integration for Laravel & Lumen 5.x",
+            "homepage": "https://github.com/SammyK/LaravelFacebookSdk",
+            "keywords": [
+                "facebook",
+                "facebook sdk v4",
+                "facebook sdk v5",
+                "laravel",
+                "lumen",
+                "sdk"
+            ],
+            "time": "2017-07-23T00:05:48+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
