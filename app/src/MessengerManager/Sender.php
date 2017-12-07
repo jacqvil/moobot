@@ -65,6 +65,11 @@ class Sender
         $this->customerData = $customerData;
     }
 
+    public function hasCustomerData()
+    {
+      return count($this->customerData) > 0;
+    }
+
     public function getCustomerData($key = null)
     {
         // return all data
