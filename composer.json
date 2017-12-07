@@ -23,7 +23,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "MooBot\\": "app/"
+            "MooBot\\": "app/",
+            "OneApi\\": "app/src"
         }
     },
     "autoload-dev": {

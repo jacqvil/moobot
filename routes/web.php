@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/webhook', 'VerifyController@index');
+Route::resource('messenger','MessengerController');
