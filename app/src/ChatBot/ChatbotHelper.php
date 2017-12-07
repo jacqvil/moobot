@@ -15,6 +15,7 @@ class ChatbotHelper
     {
 
         $this->config = $config;
+        \Log::info($config);
         $this->accessToken = $config['access_token'];
         $this->chatbotAI = new ChatbotAI($this->config);
         $this->facebookSend = new FacebookSend();
