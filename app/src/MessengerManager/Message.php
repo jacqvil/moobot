@@ -32,6 +32,7 @@ class Message
      */
     public function setEntities($entities)
     {
+        \Log::info($entities);
         $this->entities = $entities;
 
        /* $this->intent = $entities['intent'][0]['value'] ?? null;
