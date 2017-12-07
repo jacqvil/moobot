@@ -33,13 +33,20 @@ class VerifyController extends Controller
 
         $senderId = $chatbotHelper->getSenderId($input);
 
+
         if ($senderId && $chatbotHelper->isMessage($input)) {
 
+            if ($request->session()->has($senderId)) {
+                \Log::info('We have session data');
+            }
+
             if (!$chatbotHelper->isExistingConversation($senderId)) {
+                \Log::info('=========== Starting new conversation =================');
                 $sender = new Sender($senderId);
                 $conversation = new Conversation(\App::make(OneApiClientInterface::class), $sender);
             }
             else {
+                \Log::info('=========== Continuing conversation =================');
                 $conversation = new Conversation(\App::make(OneApiClientInterface::class));
                 $conversation->load($senderId);
             }
@@ -63,6 +70,7 @@ class VerifyController extends Controller
 
             }
 
+            session($request->session()->put($senderId, $conversation));
             //$conversation->processMessage($replyMessage);
 
             //$conversation->addMessage(new Message($message));

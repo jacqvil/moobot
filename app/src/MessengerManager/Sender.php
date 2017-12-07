@@ -56,4 +56,9 @@ class Sender
         return $this->getCustomerData('first_name') . ' ' . $this->getCustomerData('surname');
     }
 
+    public function loaded()
+    {
+        return count($this->customerData) > 0;
+    }
+
 }

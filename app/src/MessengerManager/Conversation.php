@@ -72,6 +72,8 @@ class Conversation
 
     public function helpImConfused(Message $message)
     {
+        $message = "I don't know what you need from me, do you want to send money?";
+
         if ($message->contains('phone_number')) {
             \Log::info('We have phone number');
 
@@ -87,8 +89,13 @@ class Conversation
                 $message = 'Hi ' . $this->sender->getFullname() . ' who would you like to send money to?';
             }
 
-            return $message;
         }
+
+        if ($message->contains('contact') && $this->sender->loaded()) {
+
+        }
+
+        return $message;
     }
 
 }
