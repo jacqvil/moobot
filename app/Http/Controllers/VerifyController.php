@@ -23,8 +23,12 @@ class VerifyController extends Controller
         // Facebook webhook verification
         $chatbotHelper->verifyWebhook($request->toArray());
 
+        \Log::info('Facebook Request');
+        \Log::info($request->toArray());
         // Get the fb users data
         $input = json_decode(file_get_contents('php://input'), true);
+        \Log::info('Facebook user data');
+        \Log::info($input);
         $senderId = $chatbotHelper->getSenderId($input);
 
         if ($senderId && $chatbotHelper->isMessage($input)) {
@@ -33,7 +37,7 @@ class VerifyController extends Controller
             $message = $chatbotHelper->getMessage($input);
 
             // Example 1: Get a static message back
-            $replyMessage = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
+            $ChatBotResponse = $chatbotHelper->getAnswer($message, ChatbotHelper::WIT_AI);
 
             // Example 2: Get foreign exchange rates
             // $replyMessage = $chatbotHelper->getAnswer($message, 'rates');

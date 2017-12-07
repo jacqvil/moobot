@@ -64,7 +64,6 @@ class ChatbotHelper
      */
     public function getAnswer($message, $api = null)
     {
-
         if ($api === 'apiai') {
             return $this->chatbotAI->getApiAIAnswer($message);
         } elseif ($api === self::WIT_AI) {
