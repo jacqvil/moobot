@@ -36,6 +36,7 @@ class VerifyController extends Controller
 
         if ($senderId && $chatbotHelper->isMessage($input)) {
 
+            \Log::info('Sender ID >>>>>>>>>>>>>> ' . $senderId);
             if ($request->session()->has($senderId)) {
                 \Log::info('We have session data');
             }
