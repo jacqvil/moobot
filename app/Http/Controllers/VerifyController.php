@@ -33,7 +33,6 @@ class VerifyController extends Controller
 
         $senderId = $chatbotHelper->getSenderId($input);
 
-
         if ($senderId && $chatbotHelper->isMessage($input)) {
 
             \Log::info('Sender ID >>>>>>>>>>>>>> ' . $senderId);
@@ -62,12 +61,14 @@ class VerifyController extends Controller
                     \Log::info('***** INTENT IS TO SEND *****');
                     $response = 'Hi, please provide us with your mobile number in the following format: 27823913445';
                     $request->session()->put($senderId, 'test');
+                    \Log::info(' Session Value: ' . $request->session()->get($senderId));
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
                 default:
                     \Log::info('***** We\'re confused *****');
                     $response = $conversation->helpImConfused($replyMessage);
                     $request->session()->put($senderId, 'test');
+                    \Log::info(' Session Value: ' . $request->session()->get($senderId));
                     $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     break;
 
