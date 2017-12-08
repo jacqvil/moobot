@@ -126,7 +126,7 @@ class Conversation
     {
         $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
         if ($conversation) {
-            $conversation->is_complete = true;
+            $conversation->is_complete = 1;
             //$conversation->completed_at = \DateTime::;
             $conversation->save();
         }
