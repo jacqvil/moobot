@@ -166,7 +166,11 @@ class OneApiClient implements OneApiClientInterface
         ];
 
         if ($this->token !== null) {
-            $body['access_token'] = $this->token;
+            if ($asJson && $type == self::POST) {
+                $options['query'] = ['access_token' => $this->token];
+            } else {
+                $body['access_token'] = $this->token;
+            }
         }
 
         if ($asJson) {
