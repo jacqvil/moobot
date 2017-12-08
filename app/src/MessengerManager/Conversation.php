@@ -144,17 +144,18 @@ class Conversation
 
         if ($this->sender->hasCustomerData()) {
             \Log::info('hasCustomerData');
+
+            if ($message->contains('contact')) {
+                \Log::info('Contact');
+                return $this->fetchRecipients($message->getEntity('contact'));
+            }
+
             return $this->askNextQuestion();
         }
 
         if ($message->contains('phone_number')) {
             \Log::info('phone_number');
             return $this->fetchCustomer($message->getEntity('phone_number'));
-        }
-
-        if ($message->contains('contact')) {
-            \Log::info('Contact');
-            return $this->fetchRecipients($message->getEntity('contact'));
         }
 
         if ($message->contains('amount_of_money')) {
