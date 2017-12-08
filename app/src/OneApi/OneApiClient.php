@@ -128,7 +128,7 @@ class OneApiClient implements OneApiClientInterface
     public function calculate($customerId, $recipientId, $corridorId, $payoutAmount)
     {
         \Log::info('calling calculate...');
-        $result = $this->request(self::POST, 'orders/calculate', [
+        $result = $this->request(self::POST, 'orders/calculator', [
             'payment_gateway'   => $this->config['ONEAPI_PAYMENT_GATEWAY'],
             'customer_id'       => $customerId,
             'recipient_id'      => $recipientId,
