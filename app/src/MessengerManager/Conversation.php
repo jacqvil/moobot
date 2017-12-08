@@ -226,6 +226,7 @@ class Conversation
             return "Sorry you do not have any existing recipients.";
         }
 
+        \Log::info( (array)$recipients);
         $this->sender->setRecipients($recipients);
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
