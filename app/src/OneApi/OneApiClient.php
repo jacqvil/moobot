@@ -138,7 +138,7 @@ class OneApiClient implements OneApiClientInterface
         ], true);
 
         //\Log::info('result status' . $result->status);
-        if ($result->status == self::SUCCESS) {
+        if ($result !== null && $result->status == self::SUCCESS) {
             return $result->data->quote_info;
         }
 
@@ -200,6 +200,8 @@ class OneApiClient implements OneApiClientInterface
         } catch (RequestException $e) {
             \Log::error($e->getMessage());
         }
+
+        return null;
 
     }
 
