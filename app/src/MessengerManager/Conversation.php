@@ -298,6 +298,7 @@ class Conversation
     {
         $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
 
+        \Log::info(get_class($conversation));
         if ( ! $conversation) {
             $conversation = new ConversationModel();
             $conversation->sender_id = $this->sender->getSenderId();
