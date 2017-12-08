@@ -229,7 +229,7 @@ class Conversation
         \Log::info( (array)$recipients);
         $this->sender->setRecipients((array)$recipients);
 
-        if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
+        if ($recipient = $this->findRecipientInList($recipientFullname, $recipients)) {
             \Log::info('<<<< recipient data >>>>');
             \Log::info((array) $recipient);
             $this->setSelectedRecipient($recipient->id);
