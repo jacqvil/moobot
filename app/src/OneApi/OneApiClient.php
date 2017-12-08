@@ -170,7 +170,7 @@ class OneApiClient implements OneApiClientInterface
         }
 
         if ($asJson) {
-            //$options[$headers['content-type'] = 'application/json';
+            $options['headers']['content-type'] = 'application/json';
             $options['json'] = $body;
         }
 
@@ -180,7 +180,7 @@ class OneApiClient implements OneApiClientInterface
 
         try {
             \Log::info('about to call OneApi');
-            \Log::info($options);
+            \Log::info(json_encode($options['json']));
             $response = $this->client->request($type, $this->config['ONEAPI_URL'] . $endpoint, $options);
 
             if ($response->getStatusCode() == self::HTTP_SUCCESS) {
