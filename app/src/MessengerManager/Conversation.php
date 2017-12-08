@@ -315,7 +315,7 @@ class Conversation
             }
 
             if ($conversation->amount == 0) {
-                $conversation->amount = $this->amount();
+                $conversation->amount = $this->getAmount();
             }
 
             if ($conversation->recipient_id === null) {
