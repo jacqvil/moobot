@@ -137,10 +137,12 @@ class OneApiClient implements OneApiClientInterface
             'is_rest'           => true
         ], true);
 
-        \Log::info('result status' . $result->status);
+        //\Log::info('result status' . $result->status);
         if ($result->status == self::SUCCESS) {
             return $result->data->quote_info;
         }
+
+        return null;
     }
 
     /**
