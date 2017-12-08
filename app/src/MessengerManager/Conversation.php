@@ -306,11 +306,26 @@ class Conversation
             $conversation->save();
         }
         else {
-            $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): $conversation->customer;
-            $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
-            $conversation->amount = $conversation->amount === 0 ? $this->amount(): $conversation->amount;
-            $conversation->recipient_id = $conversation->recipient_id === null ? $this->getSelectedRecipient(): $conversation->recipient_id;
-            $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : null;
+            if ($conversation->customer_data === null) {
+                $conversation->customer_data = json_encode($this->sender->getCustomerData());
+            }
+
+            if ($conversation->recipients === null) {
+                $conversation->recipients = json_encode($this->sender->getRecipients());
+            }
+
+            if ($conversation->amount == 0) {
+                $conversation->amount = $this->amount();
+            }
+
+            if ($conversation->recipient_id === null) {
+                $conversation->recipient_id = $this->getSelectedRecipient();
+            }
+
+            if ($conversation->quote === null) {
+                $conversation->quote = json_encode($this->getQuote());
+            }
+
             $conversation->save();
         }
 
