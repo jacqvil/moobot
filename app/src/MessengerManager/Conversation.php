@@ -7,6 +7,7 @@ use MooBot\Conversation as ConversationModel;
 
 class Conversation
 {
+    const CORRIDOR_ID = 18;
     /**
      * @var Sender
      */
