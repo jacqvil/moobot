@@ -150,11 +150,12 @@ class Conversation
         }
 
         if ($message->contains('contact')) {
-            $this->fetchRecipients($message->getEntity('contact'));
+            return $this->fetchRecipients($message->getEntity('contact'));
         }
 
         if ($message->contains('amount_of_money')) {
             $this->setAmount($message->getEntity('amount_of_money'));
+            return "We now need to create a quote";
         }
 
         return $response;
