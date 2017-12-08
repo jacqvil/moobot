@@ -14,6 +14,7 @@ use MooBot\Message as MessageModel;
 class Message
 {
     CONST INTENT_SEND = 'send';
+    CONST INTENT_YES  = 'yes';
 
     protected $intent;
     protected $contact;

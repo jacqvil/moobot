@@ -149,10 +149,42 @@ class OneApiClient implements OneApiClientInterface
 
     /**
      * @param $customerId
+     * @param $recipientId
+     * @param $corridorId
+     * @param $payInAmount
+     * @param $payoutAmount
+     * @param $calculationToken
+     * @param $operatorId
+     * @param $publicBuyRate
+     * @param $transactionReference
+     * @param $affiliateBalanceAmount
+     * @return null
      */
-    public function createOrder($customerId)
+    public function createOrder($customerId, $recipientId, $corridorId, $payInAmount,
+        $payoutAmount, $calculationToken, $operatorId, $publicBuyRate, $transactionReference, $affiliateBalanceAmount)
     {
-        // TODO: Implement createOrder() method.
+        \Log::info('calling calculate...');
+        $result = $this->request(self::POST, 'orders', [
+            'payment_gateway'           => $this->config['ONEAPI_PAYMENT_GATEWAY'],
+            'customer_id'               => $customerId,
+            'recipient_id'              => $recipientId,
+            'corridor_id'               => $corridorId,
+            'public_buy_rate'           => $publicBuyRate,
+            'pay_in_amount'             => $payInAmount,
+            'pay_out_amount'            => $payoutAmount,
+            'calculation_token'         => $calculationToken,
+            'transaction_reference'     => $transactionReference,
+            'affiliate_balance_amount'  => $affiliateBalanceAmount,
+            'operator_id'               => $operatorId,
+            'is_rest'                   => true
+        ], true);
+
+        //\Log::info('result status' . $result->status);
+        if ($result !== null && $result->status == self::SUCCESS) {
+            return $result->data->order;
+        }
+
+        return null;
     }
 
     /**
