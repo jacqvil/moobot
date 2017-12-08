@@ -8,6 +8,6 @@ interface OneApiClientInterface
     public function corridors($customerId);
     public function remittanceCities($customerId, $corridorId);
     public function remittanceCountries($customerId);
-    public function calculate($calculator);
+    public function calculate($customerId, $recipientId, $corridorId, $payoutAmount);
     public function createOrder($customerId);
 }

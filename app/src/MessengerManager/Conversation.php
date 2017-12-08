@@ -153,7 +153,8 @@ class Conversation
             if ($message->contains('amount_of_money')) {
                 $this->setAmount($message->getEntity('amount_of_money'));
                 $this->save();
-                return "We now need to create a quote";
+                return $this->generateQuote();
+
             }
 
             return $this->askNextQuestion();
@@ -167,6 +168,12 @@ class Conversation
         return $response;
     }
 
+    public function generateQuote()
+    {
+        $this->oneApiClient->authenticate();
+        $quote = $this->oneApiClient->calculate($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, $this->getAmount());
+        return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . '. Enter yes to proceed or enter a different amount.';
+    }
 
     public function fetchRecipients($recipientFullname)
     {

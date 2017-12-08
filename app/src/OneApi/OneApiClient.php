@@ -119,11 +119,28 @@ class OneApiClient implements OneApiClientInterface
     }
 
     /**
-     * @param $calculator
+     * @param $customerId
+     * @param $recipientId
+     * @param $corridorId
+     * @param $payoutAmount
+     * @return mixed
      */
-    public function calculate($calculator)
+    public function calculate($customerId, $recipientId, $corridorId, $payoutAmount)
     {
-        // TODO: Implement calculate() method.
+        \Log::info('calling calculate...');
+        $result = $this->request(self::POST, 'orders/calculate', [
+            'payment_gateway'   => $this->config['ONEAPI_PAYMENT_GATEWAY'],
+            'customer_id'       => $customerId,
+            'recipient_id'      => $recipientId,
+            'corridor_id'       => $corridorId,
+            'pay_out_amount'    => $payoutAmount,
+            'is_rest'           => true
+        ], true);
+
+        \Log::info('result status' . $result->status);
+        if ($result->status == self::SUCCESS) {
+            return $result->data->quote_info;
+        }
     }
 
     /**
