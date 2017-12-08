@@ -149,6 +149,10 @@ class Conversation
             return $this->fetchCustomer($message->getEntity('phone_number'));
         }
 
+        if ($message->contains('contact')) {
+            $this->fetchRecipients($message->getEntity('contact'));
+        }
+
         if ($message->contains('amount_of_money')) {
             $this->setAmount($message->getEntity('amount_of_money'));
         }
@@ -156,6 +160,37 @@ class Conversation
         return $response;
     }
 
+
+    public function fetchRecipients($recipientFullname)
+    {
+        $this->oneApiClient->authenticate();
+        $recipients = $this->oneApiClient->recipients($this->sender->getCustomerData('id'));
+
+        if (count($recipients) == 0) {
+            return "Sorry you do not have any existing recipients.";
+        }
+
+        $this->sender->setRecipients($recipients);
+
+        if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
+            $this->setSelectedRecipient($recipient['id']);
+            $this->askNextQuestion();
+        }
+        else {
+            return "We cannot find the recipient in your recipient list. Please check that the name is correct.";
+        }
+    }
+
+    public function findRecipientInList($recipientFullname, $recipients)
+    {
+        foreach ($recipients as $recipient) {
+            if ($recipient->full_name == $recipientFullname) {
+                return $recipient;
+            }
+        }
+
+        return null;
+    }
     public function fetchCustomer($mobileNumber)
     {
         $this->oneApiClient->authenticate();

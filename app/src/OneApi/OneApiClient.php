@@ -80,13 +80,16 @@ class OneApiClient implements OneApiClientInterface
 
     /**
      * @param $customerId
+     * @return array;
      */
     public function recipients($customerId)
     {
         $result  = $this->request(self::GET, 'customers/'.$customerId.'/recipients', [
         ], false);
 
-        var_dump($result);die;
+        if ($result->status == self::SUCCESS) {
+            return $result->data->recipients;
+        }
     }
 
     /**
