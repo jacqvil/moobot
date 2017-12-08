@@ -307,22 +307,27 @@ class Conversation
         }
         else {
             if ($conversation->customer_data === null) {
+                \Log::info('!!! OUr customer data is empty !!!');
                 $conversation->customer_data = json_encode($this->sender->getCustomerData());
             }
 
             if ($conversation->recipients === null) {
+                \Log::info('!!! recipient empty !!!');
                 $conversation->recipients = json_encode($this->sender->getRecipients());
             }
 
             if ($conversation->amount == 0) {
+                \Log::info('!!! amount empty !!!');
                 $conversation->amount = $this->getAmount();
             }
 
             if ($conversation->recipient_id === null) {
+                \Log::info('!!! recipient is empty !!!');
                 $conversation->recipient_id = $this->getSelectedRecipient();
             }
 
             if ($conversation->quote === null) {
+                \Log::info('!!! quote is empty !!!');
                 $conversation->quote = json_encode($this->getQuote());
             }
 
