@@ -71,9 +71,11 @@ class VerifyController extends Controller
                     break;
                 case Message::INTENT_YES :
                     if ($conversation->getQuote() !== null) {
-                        $order = $conversation->createOrder();
-                        \Log::info((array) $order);
+                        $response = $conversation->createOrder();
+                        $replyMessage->save($message, $response);
+                        $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                     }
+                    break;
                 default:
                     \Log::info('***** We\'re confused *****');
                     $response = $conversation->helpImConfused($replyMessage);
