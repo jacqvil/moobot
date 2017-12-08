@@ -13,7 +13,7 @@ class Sender
      */
     protected $customerData;
 
-    protected $recipients = null;
+    protected $recipients;
 
     /**
      * @return array
@@ -38,7 +38,6 @@ class Sender
                 return $recipient;
             }
         }
-
         return null;
     }
 
