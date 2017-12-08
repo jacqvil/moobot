@@ -312,9 +312,9 @@ class Conversation
             \Log::info($conversation->customer_data);
 
 
-            if ($conversation->customer_data === null) {
+            if ($conversation->customer === null) {
                 \Log::info('!!! customer empty !!!');
-                //$conversation->customer_data = json_encode($this->sender->getCustomerData());
+                $conversation->customer_data = json_encode($this->sender->getCustomerData());
             }
 
             if ($conversation->recipients === null) {
