@@ -297,7 +297,6 @@ class Conversation
     {
         $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
 
-        \Log::info($conversation);
         if ( ! $conversation) {
             $conversation = new ConversationModel();
             $conversation->sender_id = $this->sender->getSenderId();
@@ -312,11 +311,7 @@ class Conversation
             \Log::info('Customer Data');
             \Log::info($conversation->customer_data);
 
-
-            if ($conversation->customer === null) {
-                \Log::info('!!! customer empty !!!');
-                $conversation->customer_data = json_encode($this->sender->getCustomerData());
-            }
+            $conversation->customer_data = json_encode($this->sender->getCustomerData());
 
             if ($conversation->recipients === null) {
                 \Log::info('!!! recipient empty !!!');
