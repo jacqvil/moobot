@@ -173,7 +173,12 @@ class Conversation
     {
         $this->oneApiClient->authenticate();
         $quote = $this->oneApiClient->calculate($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, $this->getAmount());
-        return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . '. Enter yes to proceed or enter a different amount.';
+        if ($quote !== null) {
+            return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . '. Enter yes to proceed or enter a different amount.';
+        }
+        else {
+            return "Sorry, we couldn't generate a quote for you";
+        }
     }
 
     public function fetchRecipients($recipientFullname)
