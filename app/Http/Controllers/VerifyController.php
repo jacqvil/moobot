@@ -74,6 +74,7 @@ class VerifyController extends Controller
                         $response = $conversation->createOrder();
                         $replyMessage->save($message, $response);
                         $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
+                        return;
                     }
                     break;
                 default:
