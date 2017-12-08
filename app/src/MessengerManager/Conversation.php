@@ -302,11 +302,11 @@ class Conversation
             $conversation->save();
         }
         else {
-            $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): null;
-            $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
-            $conversation->amount = $conversation->amount === 0 ? $this->amount(): 0;
-            $conversation->recipient_id = $conversation->recipient_id === null ? $this->getSelectedRecipient(): null;
-            $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : null;
+            $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): $conversation->customer;
+            $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): $conversation->recipients;
+            $conversation->amount = $conversation->amount === 0 ? $this->amount(): $conversation->amount;
+            $conversation->recipient_id = $conversation->recipient_id === null ? $this->getSelectedRecipient(): $conversation->recipient_id;
+            $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : $conversation->quote;
             $conversation->save();
         }
 
