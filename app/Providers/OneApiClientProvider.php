@@ -30,7 +30,12 @@ class OneApiClientProvider extends ServiceProvider
             $config = config('oneapi');
 
             $client = new Client([
-                'base_uri' => $config['ONEAPI_URL']
+                'base_uri' => $config['ONEAPI_URL'],
+                "curl"        => [
+                    CURLOPT_TIMEOUT => 30000,
+                    CURLOPT_TIMEOUT_MS => 30000,
+                    CURLOPT_CONNECTTIMEOUT => 30000,
+                ]
             ]);
 
             return new OneApiClient($client, $config);
