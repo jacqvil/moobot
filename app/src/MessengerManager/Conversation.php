@@ -195,7 +195,7 @@ class Conversation
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
             \Log::info('<<<< recipient data >>>>');
-            \Log::info($recipient);
+            \Log::info((array) $recipient);
             $this->setSelectedRecipient($recipient->id);
             $this->save();
             return $this->askNextQuestion();
