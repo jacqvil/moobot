@@ -271,7 +271,7 @@ class Conversation
     public function askNextQuestion()
     {
         if ($this->getSelectedRecipient() === null) {
-            return 'Hi ' . $this->getSender()->getFullname() . ', who do you want to send to?';
+            return 'Hi ' . $this->getSender()->getFullname() . ', who do you want to send to? Please enter the full name of the person you are sending to.';
         }
 
         if ($this->getAmount() == 0) {
