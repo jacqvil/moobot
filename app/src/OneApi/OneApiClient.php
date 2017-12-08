@@ -87,6 +87,7 @@ class OneApiClient implements OneApiClientInterface
         $result  = $this->request(self::GET, 'customers/'.$customerId.'/recipients', [
         ], false);
 
+        \Log::info('result status' . $result->status);
         if ($result->status == self::SUCCESS) {
             return $result->data->recipients;
         }
