@@ -311,7 +311,14 @@ class Conversation
         }
         else {
 
-            \Log::info('Customer Data');
+            $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): $conversation->customer;
+            $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
+            $conversation->amount = $conversation->amount === 0 ? $this->amount(): $conversation->amount;
+            $conversation->recipient_id = $conversation->recipient_id === null ? $this->getSelectedRecipient(): $conversation->recipient_id;
+            $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : null;
+            $conversation->save();
+
+           /* \Log::info('Customer Data');
             \Log::info($conversation->customer_data);
 
             $conversation->customer_data = json_encode($this->sender->getCustomerData());
@@ -338,7 +345,7 @@ class Conversation
                 $conversation->quote = json_encode($this->getQuote());
             }
 
-            $conversation->save();
+            $conversation->save();*/
         }
 
         $this->id = $conversation->id;
