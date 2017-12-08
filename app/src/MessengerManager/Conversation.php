@@ -1,5 +1,6 @@
 <?php namespace Moo\MessengerManager;
 
+use Faker\Provider\DateTime;
 use Moo\OneApi\OneApiClient;
 use Moo\OneApi\OneApiClientInterface;
 use Moo\Repositories\ConversationRepository;
@@ -126,7 +127,7 @@ class Conversation
         $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
         if ($conversation) {
             $conversation->is_complete = true;
-            $conversation->completed_at = time();
+            //$conversation->completed_at = \DateTime::;
             $conversation->save();
         }
     }
