@@ -8,6 +8,7 @@ use MooBot\Conversation as ConversationModel;
 class Conversation
 {
     const CORRIDOR_ID = 18;
+    const COUNTRY_ID = 239;
     /**
      * @var Sender
      */
@@ -172,7 +173,7 @@ class Conversation
     public function generateQuote()
     {
         $this->oneApiClient->authenticate();
-        $quote = $this->oneApiClient->calculate($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, $this->getAmount());
+        $quote = $this->oneApiClient->calculate($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, self::COUNTRY_ID, $this->getAmount());
         if ($quote !== null) {
             return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . '. Enter yes to proceed or enter a different amount.';
         }

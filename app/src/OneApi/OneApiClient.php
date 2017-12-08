@@ -122,10 +122,11 @@ class OneApiClient implements OneApiClientInterface
      * @param $customerId
      * @param $recipientId
      * @param $corridorId
+     * @param $countryId
      * @param $payoutAmount
      * @return mixed
      */
-    public function calculate($customerId, $recipientId, $corridorId, $payoutAmount)
+    public function calculate($customerId, $recipientId, $corridorId, $countryId, $payoutAmount)
     {
         \Log::info('calling calculate...');
         $result = $this->request(self::POST, 'orders/calculator', [
@@ -134,6 +135,7 @@ class OneApiClient implements OneApiClientInterface
             'recipient_id'      => $recipientId,
             'corridor_id'       => $corridorId,
             'pay_out_amount'    => $payoutAmount,
+            'country_id'        => $countryId,
             'is_rest'           => true
         ], true);
 
