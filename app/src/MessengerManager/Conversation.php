@@ -180,7 +180,7 @@ class Conversation
         $this->sender->setRecipients($recipients);
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
-            $this->setSelectedRecipient($recipient['id']);
+            $this->setSelectedRecipient($recipient->id);
             $this->askNextQuestion();
         }
         else {
