@@ -13,7 +13,7 @@ class Sender
      */
     protected $customerData;
 
-    protected $recipients = [];
+    protected $recipients = null;
 
     /**
      * @return array
