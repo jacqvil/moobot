@@ -29,6 +29,6 @@ class ConversationRepository
 
     public function findBySenderId($senderId)
     {
-        return $this->model->whereSenderId($senderId)->latest()->first();
+        return $this->model->whereSenderId($senderId)->whereIsComplete(false)->latest()->first();
     }
 }

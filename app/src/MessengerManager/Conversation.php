@@ -121,10 +121,17 @@ class Conversation
 
     }
 
-    public function processMessage(Message $message)
+    public function markAsComplete()
     {
-
+        $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
+        if ($conversation) {
+            $conversation->is_complete = true;
+            $conversation->completed_at = time();
+            $conversation->save();
+        }
     }
+
+
 
     /**
      * @return array

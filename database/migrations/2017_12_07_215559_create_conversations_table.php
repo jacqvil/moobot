@@ -21,6 +21,8 @@ class CreateConversationsTable extends Migration
             $table->string("recipient_id")->nullable();
             $table->longText("quote")->nullable();
             $table->decimal("amount", 20, 4)->nullable();
+            $table->boolean('is_complete')->default(false);
+            $table->timestamp('completed_at');
             $table->timestamps();
         });
     }

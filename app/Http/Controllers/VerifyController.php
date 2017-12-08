@@ -72,6 +72,7 @@ class VerifyController extends Controller
                 case Message::INTENT_YES :
                     if ($conversation->getQuote() !== null) {
                         $response = $conversation->createOrder();
+                        $conversation->markAsComplete();
                         $replyMessage->save($message, $response);
                         $chatbotHelper->send($conversation->getSender()->getSenderId(), $response);
                         return;
