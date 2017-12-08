@@ -255,6 +255,8 @@ class Conversation
         $this->oneApiClient->authenticate();
         $customers = $this->oneApiClient->customers($mobileNumber);
 
+        \Log::info((array) $customers);
+
         if (count($customers) == 0) {
             return "Sorry we couldn't find a profile associated with the mobile number, " . $mobileNumber. ". Please make sure the number is correct.";
         }
