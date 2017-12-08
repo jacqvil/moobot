@@ -316,6 +316,7 @@ class Conversation
 
             if ($conversation->recipients === null) {
                 \Log::info('!!! recipient empty !!!');
+                \Log::info(json_encode($this->sender->getRecipients()));
                 $conversation->recipients = json_encode($this->sender->getRecipients());
             }
 
