@@ -71,7 +71,8 @@ class VerifyController extends Controller
                     break;
                 case Message::INTENT_YES :
                     if ($conversation->getQuote() !== null) {
-                        $conversation->createOrder();
+                        $order = $conversation->createOrder();
+                        \Log::info((array) $order);
                     }
                 default:
                     \Log::info('***** We\'re confused *****');
