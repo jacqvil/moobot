@@ -163,6 +163,7 @@ class Conversation
 
     public function fetchRecipients($recipientFullname)
     {
+        \Log::info('>>>>>>>>>>>>>>> Going to fetch recipients');
         $this->oneApiClient->authenticate();
         $recipients = $this->oneApiClient->recipients($this->sender->getCustomerData('id'));
 
