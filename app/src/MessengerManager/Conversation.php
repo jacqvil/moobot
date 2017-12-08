@@ -138,18 +138,22 @@ class Conversation
         $response = "I don't know what you need from me, do you want to send money? If yes, please send me your mobile number.";
 
         if (count($message->getEntities()) == 0) {
+            \Log::info('No Entities');
             return $response;
         }
 
         if ($this->sender->hasCustomerData()) {
+            \Log::info('hasCustomerData');
             return $this->askNextQuestion();
         }
 
         if ($message->contains('phone_number')) {
+            \Log::info('phone_number');
             return $this->fetchCustomer($message->getEntity('phone_number'));
         }
 
         if ($message->contains('contact')) {
+            \Log::info('Contact');
             return $this->fetchRecipients($message->getEntity('contact'));
         }
 
