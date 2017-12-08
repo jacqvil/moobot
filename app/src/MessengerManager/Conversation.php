@@ -198,13 +198,12 @@ class Conversation
     {
         $this->oneApiClient->authenticate();
         $quote = $this->getQuote();
-        $quote = $this->oneApiClient->createOrder($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, $quote->pay_in_amount, $quote->pay_out_amount,
+        $order = $this->oneApiClient->createOrder($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, $quote->pay_in_amount, $quote->pay_out_amount,
             $quote->calculation_token, self::OPERATOR_ID, $quote->public_buy_rate, 'ref000001'.time(), 0);
 
-        if ($quote !== null) {
-            $this->setQuote($quote);
+        if ($order !== null) {
             $this->save();
-            return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . ' to ' . $this->sender->getRecipient($this->getSelectedRecipient())->full_name . '. Enter yes to proceed or enter a different amount.';
+            return 'We created an order for you';
         }
         else {
             return "Sorry, we couldn't generate a quote for you";
