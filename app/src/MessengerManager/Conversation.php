@@ -311,13 +311,10 @@ class Conversation
         }
         else {
 
-            if ($conversation->customer_data === null) {
-                \Log::info('Customer Data');
-                \Log::info($conversation->customer_data);
+            \Log::info('Customer Data');
+            \Log::info($conversation->customer_data);
 
-                $conversation->customer_data = json_encode($this->sender->getCustomerData());
-            }
-
+            $conversation->customer_data = json_encode($this->sender->getCustomerData());
 
             if ($conversation->recipients === null) {
                 \Log::info('!!! recipient empty !!!');
