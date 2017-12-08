@@ -202,8 +202,7 @@ class Conversation
             $quote->calculation_token, self::OPERATOR_ID, $quote->public_buy_rate, 'ref000001'.time(), 0);
 
         if ($order !== null) {
-            $this->save();
-            return 'We created an order for you';
+            return 'Your order was created successfully. Your order number is: ' . $order->id;
         }
         else {
             return "Sorry, we couldn't generate a quote for you";
