@@ -227,7 +227,7 @@ class Conversation
         }
 
         \Log::info( (array)$recipients);
-        $this->sender->setRecipients($recipients);
+        $this->sender->setRecipients((array)$recipients);
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
             \Log::info('<<<< recipient data >>>>');
