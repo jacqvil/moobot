@@ -197,7 +197,6 @@ class OneApiClient implements OneApiClientInterface
 
         } catch (RequestException $e) {
             \Log::error($e->getMessage());
-            throw $e;
         }
 
     }
