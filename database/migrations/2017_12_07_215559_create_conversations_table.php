@@ -19,6 +19,7 @@ class CreateConversationsTable extends Migration
             $table->longText("customer_data")->nullable();
             $table->longText("recipients")->nullable();
             $table->string("recipient_id")->nullable();
+            $table->longText("quote")->nullable();
             $table->decimal("amount", 20, 4)->nullable();
             $table->timestamps();
         });

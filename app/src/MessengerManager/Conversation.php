@@ -16,6 +16,8 @@ class Conversation
 
     protected $id;
 
+    protected $quote;
+
     /**
      * @var array
      */
@@ -112,6 +114,7 @@ class Conversation
         $this->sender->setRecipients(json_decode($conversation->recipients));
         $this->setSelectedRecipient($conversation->recipient_id);
         $this->setAmount($conversation->amount);
+        $this->setQuote(json_decode($conversation->quote));
 
         return true;
 
@@ -170,12 +173,20 @@ class Conversation
         return $response;
     }
 
+    public function setQuote($quote)
+    {
+        $this->quote = $quote;
+    }
+
     public function generateQuote()
     {
         $this->oneApiClient->authenticate();
         $quote = $this->oneApiClient->calculate($this->sender->getCustomerData('id'), $this->getSelectedRecipient(), self::CORRIDOR_ID, self::COUNTRY_ID, $this->getAmount());
+
+
         if ($quote !== null) {
-            return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . '. Enter yes to proceed or enter a different amount.';
+            $this->setQuote($quote);
+            return 'You will pay ' . $quote->pay_in_amount . ' to send ' . $quote->pay_out_amount . ' to ' . $this->sender->getRecipient($this->getSelectedRecipient())->full_name . '. Enter yes to proceed or enter a different amount.';
         }
         else {
             return "Sorry, we couldn't generate a quote for you";
@@ -249,6 +260,14 @@ class Conversation
         return $this->selectedRecipient;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getQuote()
+    {
+        return $this->quote;
+    }
+
     public function save()
     {
         $conversation = $this->repo->findBySenderId($this->sender->getSenderId());
@@ -260,6 +279,7 @@ class Conversation
             $conversation->recipients = json_encode($this->sender->getRecipients()) ?? null;
             $conversation->amount = $this->getAmount() ?? 0;
             $conversation->recipient_id = json_encode($this->getSelectedrecipient()) ?? null;
+            $conversation->quote = json_encode($this->getQuote()) ?? null;
             $conversation->save();
         }
         else {
@@ -267,6 +287,7 @@ class Conversation
             $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
             $conversation->amount = $conversation->amount === 0 ? $this->amount(): 0;
             $conversation->recipient_id = $conversation->recipient_id === null ? json_encode($this->getSelectedRecipient()): null;
+            $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : null;
             $conversation->save();
         }
 

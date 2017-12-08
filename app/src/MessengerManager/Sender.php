@@ -31,6 +31,17 @@ class Sender
         $this->recipients = $recipients;
     }
 
+    public function getRecipient($recipientId)
+    {
+        foreach ($this->recipients as $recipient) {
+            if ($recipient->id == $recipientId) {
+                return $recipient;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Sender constructor.
      *
