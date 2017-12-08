@@ -36,7 +36,7 @@ class Conversation
      */
     public function setSelectedRecipient($selectedRecipient)
     {
-        $this->selectedRecipient = intval($selectedRecipient);
+        $this->selectedRecipient = $selectedRecipient;
 
     }
 
