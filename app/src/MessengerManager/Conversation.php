@@ -150,17 +150,18 @@ class Conversation
                 return $this->fetchRecipients($message->getEntity('contact'));
             }
 
+            if ($message->contains('phone_number')) {
+                \Log::info('phone_number');
+                return $this->fetchCustomer($message->getEntity('phone_number'));
+            }
+
+            if ($message->contains('amount_of_money')) {
+                $this->setAmount($message->getEntity('amount_of_money'));
+                $this->save();
+                return "We now need to create a quote";
+            }
+
             return $this->askNextQuestion();
-        }
-
-        if ($message->contains('phone_number')) {
-            \Log::info('phone_number');
-            return $this->fetchCustomer($message->getEntity('phone_number'));
-        }
-
-        if ($message->contains('amount_of_money')) {
-            $this->setAmount($message->getEntity('amount_of_money'));
-            return "We now need to create a quote";
         }
 
         return $response;
