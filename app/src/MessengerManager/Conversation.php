@@ -181,6 +181,7 @@ class Conversation
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
             $this->setSelectedRecipient($recipient->id);
+            $this->save();
             return $this->askNextQuestion();
         }
         else {
