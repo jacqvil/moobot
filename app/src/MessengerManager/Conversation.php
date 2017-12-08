@@ -181,7 +181,7 @@ class Conversation
 
         if ($recipient = $this->findRecipientInList($recipientFullname,$recipients)) {
             $this->setSelectedRecipient($recipient->id);
-            $this->askNextQuestion();
+            return $this->askNextQuestion();
         }
         else {
             return "We cannot find the recipient in your recipient list. Please check that the name is correct.";
