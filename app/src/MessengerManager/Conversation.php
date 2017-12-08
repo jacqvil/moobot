@@ -313,7 +313,7 @@ class Conversation
 
             $conversation->customer_data = $conversation->customer === null ? json_encode($this->sender->getCustomerData()): $conversation->customer;
             $conversation->recipients = $conversation->recipients === null ? json_encode($this->sender->getRecipients()): null;
-            $conversation->amount = $conversation->amount === 0 ? $this->amount(): $conversation->amount;
+            $conversation->amount = $conversation->amount === 0 ? $this->getAmount(): $conversation->amount;
             $conversation->recipient_id = $conversation->recipient_id === null ? $this->getSelectedRecipient(): $conversation->recipient_id;
             $conversation->quote = $conversation->quote === null ? json_encode($this->getQuote()) : null;
             $conversation->save();
