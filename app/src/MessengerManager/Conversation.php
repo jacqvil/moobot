@@ -308,7 +308,7 @@ class Conversation
         else {
             \Log::info('Customer Data');
             \Log::info($conversation->customer_data);
-            if ($conversation->customer_data === null) {
+            if ($conversation->customer_data == null) {
                 \Log::info('!!! OUr customer data is empty !!!');
                 $conversation->customer_data = json_encode($this->sender->getCustomerData());
             }
