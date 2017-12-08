@@ -180,6 +180,7 @@ class OneApiClient implements OneApiClientInterface
         if ($asJson) {
             $options['headers']['content-type'] = 'application/json';
             $options['json'] = $body;
+            \Log::info($body);
         }
 
         if ($type == self::GET) {
